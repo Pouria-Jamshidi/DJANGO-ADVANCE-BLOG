@@ -1,5 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 # Create your models here.
 class Post(models.Model):
@@ -19,7 +21,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def __meta__(self):
+    class Meta:
         verbose_name = "پست"
         verbose_name_plural = "پست‌ها"
 
@@ -29,6 +31,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    def __meta__(self):
+    class Meta:
         verbose_name = "دسته‌بندی"
         verbose_name_plural = "دسته‌بندی‌ها"

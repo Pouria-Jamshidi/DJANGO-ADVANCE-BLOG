@@ -14,7 +14,7 @@ class MyUserManager(BaseUserManager):
 
         if not email:
             raise ValueError(_("The Email must be set."))
-
+ 
         user = self.model(
             email=self.normalize_email(email),**extra_fields
         )
@@ -51,9 +51,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    objects = MyUserManager()
+
     def __str__(self):
         return self.email
 
-    def __meta__(self):
+    class Meta:
         verbose_name = "کاربر"
         verbose_name_plural = "کاربرها"
