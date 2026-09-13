@@ -6,6 +6,9 @@ from django.contrib.auth.models import (
 )
 from django.utils.translation import gettext_lazy as _
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 class MyUserManager(BaseUserManager):
     def create_user(self, email:str, password:str, **extra_fields):
         """
@@ -75,3 +78,10 @@ class Profile(models.Model):
     class Meta:
         verbose_name = "پروفایل"
         verbose_name_plural = "پروفایل ها"
+
+
+# =========================== Signals ===========================
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
