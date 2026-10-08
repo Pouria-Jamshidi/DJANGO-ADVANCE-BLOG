@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>
+        {{ object.title }} - <a href="{% url 'blog:post-edit' pk=object.pk %}">Edit</a> - <a href="{% url 'blog:post-delete' pk=post.id %}" style="color: red; text-decoration: none;">Delete</a>
+    </h1> 
+    <p>Content: {{ object.content }}</p>
+    <p>Author: {{ object.author }}</p>
+    <p>Published: {{ object.publish_date|date }}</p>
+  </body>
+</html>
