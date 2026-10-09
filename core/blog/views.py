@@ -4,6 +4,7 @@ from blog.models import Post
 from blog.forms import PostForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from accounts.models import Profile
 
 class IndexView_cbv(TemplateView):
     """
@@ -49,7 +50,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('blog:post-list')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author = self.request.user.profile
         return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):

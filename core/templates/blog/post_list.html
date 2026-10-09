@@ -21,7 +21,7 @@
             <h5 style="color: red;">Delete</h5>
           </a>
           <small>
-            Author: {{ post.author }} - published: {{ post.publish_date }}
+            Author: {{ post.author.first_name }} {{ post.author.last_name }} - published: {{ post.publish_date }}
           </small>
         </li>
         {% empty %}
